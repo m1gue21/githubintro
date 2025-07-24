@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: GitHub y Git Esencial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827;
+            color: #F9FAFB;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .stat-card {
+            background-color: #1F2937;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid #374151;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 240, 181, 0.1), 0 4px 6px -2px rgba(0, 240, 181, 0.05);
+        }
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1;
+            color: #00F0B5;
+        }
+        .flow-step {
+            background-color: #1F2937;
+            border: 1px solid #00A0F0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+        }
+        .flow-arrow {
+            font-size: 2rem;
+            color: #00A0F0;
+            align-self: center;
+            padding: 0 0.5rem;
+        }
+        .code-block {
+            background-color: #0F172A;
+            color: #E2E8F0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .example-step {
+            background-color: #1F2937;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid #0060F0;
+        }
+        .example-step h4 {
+            color: #00F0B5;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-2">GitHub Esencial: Control de Versiones para Colaboración</h1>
+            <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">Una guía visual y práctica para entender y empezar a usar Git y GitHub, las herramientas fundamentales para cualquier desarrollador.</p>
+        </header>
+
+        <main class="space-y-16">
+
+            <section id="que-es-git-github">
+                <h2 class="text-3xl font-bold text-center mb-8 text-white">¿Qué es Git y GitHub? La Diferencia Clave</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="stat-card">
+                        <div class="text-6xl mb-4">⚙️</div>
+                        <h3 class="font-bold text-2xl text-white mb-2">Git: El Motor de Control de Versiones</h3>
+                        <p class="text-gray-300 text-lg">Es un sistema de software que rastrea cada cambio que haces en tus archivos. Te permite volver a versiones anteriores, experimentar sin miedo y gestionar los cambios en tus proyectos localmente.</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="text-6xl mb-4">🌐</div>
+                        <h3 class="font-bold text-2xl text-white mb-2">GitHub: La Plataforma de Colaboración</h3>
+                        <p class="text-gray-300 text-lg">Es un servicio web que aloja tus repositorios de Git en la nube. Proporciona una interfaz gráfica, herramientas de colaboración (como Pull Requests) y te permite compartir tu trabajo con el mundo.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="conceptos-clave">
+                <h2 class="text-3xl font-bold text-center mb-8 text-white">Conceptos Esenciales de Git y GitHub</h2>
+                <p class="text-center text-gray-400 mb-8 max-w-3xl mx-auto">Entender estos términos básicos te ayudará a comprender cómo funcionan los comandos.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="stat-card text-left">
+                        <div class="text-3xl mb-2">📦</div>
+                        <h4 class="font-bold text-xl text-white">Repositorio (Repo)</h4>
+                        <p class="text-gray-400">La carpeta de tu proyecto que Git está rastreando, incluyendo el historial de cambios. Puede ser local o remoto.</p>
+                    </div>
+                    <div class="stat-card text-left">
+                        <div class="text-3xl mb-2">📸</div>
+                        <h4 class="font-bold text-xl text-white">Commit</h4>
+                        <p class="text-gray-400">Una "instantánea" de los cambios que has guardado. Cada commit debe tener un mensaje descriptivo.</p>
+                    </div>
+                    <div class="stat-card text-left">
+                        <div class="text-3xl mb-2">🌿</div>
+                        <h4 class="font-bold text-xl text-white">Branch (Rama)</h4>
+                        <p class="text-gray-400">Una línea de desarrollo independiente. Permite trabajar en funciones nuevas sin afectar el código principal.</p>
+                    </div>
+                    <div class="stat-card text-left">
+                        <div class="text-3xl mb-2">🤝</div>
+                        <h4 class="font-bold text-xl text-white">Merge (Fusionar)</h4>
+                        <p class="text-gray-400">La acción de combinar los cambios de una rama en otra (ej. de tu rama de función a la principal).</p>
+                    </div>
+                    <div class="stat-card text-left">
+                        <div class="text-3xl mb-2">📥</div>
+                        <h4 class="font-bold text-xl text-white">Pull Request (PR)</h4>
+                        <p class="text-gray-400">En GitHub, es una propuesta para fusionar tus cambios. Permite revisión y discusión antes de integrar el código.</p>
+                    </div>
+                    <div class="stat-card text-left">
+                        <div class="text-3xl mb-2">⬆️⬇️</div>
+                        <h4 class="font-bold text-xl text-white">Remoto vs. Local</h4>
+                        <p class="text-gray-400">Tu copia del repositorio en tu computadora (local) y la versión en GitHub (remoto) se sincronizan.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="comandos-esenciales">
+                <h2 class="text-3xl font-bold text-center mb-8 text-white">Comandos Esenciales de Git (Terminal)</h2>
+                <p class="text-center text-gray-400 mb-8 max-w-3xl mx-auto">Estos son los comandos clave que utilizarás con más frecuencia en tu día a día con Git y GitHub.</p>
+
+                <div class="space-y-6">
+                    <div class="bg-gray-800 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">1. Configuración Inicial (`git config`)</h3>
+                        <p class="text-gray-400 mb-4">Establece tu nombre de usuario y correo electrónico para identificar tus commits. ¡Solo necesitas hacerlo una vez!</p>
+                        <div class="code-block">
+                            <p>git config --global user.name "Tu Nombre"</p>
+                            <p>git config --global user.email "tu@email.com"</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">2. Inicializar un Repositorio (`git init`)</h3>
+                        <p class="text-gray-400 mb-4">Convierte una carpeta normal en un repositorio de Git, permitiendo que Git empiece a rastrear los cambios.</p>
+                        <div class="code-block">
+                            <p>git init</p>
+                        </div>
+                    </div>
+                     <div class="bg-gray-800 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">3. Clonar un Repositorio (`git clone`)</h3>
+                        <p class="text-gray-400 mb-4">Descarga una copia completa de un repositorio existente (por ejemplo, desde GitHub) a tu computadora.</p>
+                        <div class="code-block">
+                            <p>git clone &lt;URL_del_repositorio&gt;</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">4. Ver el Estado (`git status`)</h3>
+                        <p class="text-gray-400 mb-4">Muestra qué archivos han sido modificados, cuáles están listos para un commit, y cuáles no están siendo rastreados.</p>
+                        <div class="code-block">
+                            <p>git status</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">5. Añadir al Área de Preparación (`git add`)</h3>
+                        <p class="text-gray-400 mb-4">Prepara los cambios de uno o más archivos para ser incluidos en el próximo commit.</p>
+                        <div class="code-block">
+                            <p>git add &lt;nombre_del_archivo&gt; <span class="text-gray-500"> # Para un archivo específico</span></p>
+                            <p>git add . <span class="text-gray-500"> # Para todos los cambios en la carpeta actual</span></p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">6. Guardar Cambios (`git commit`)</h3>
+                        <p class="text-gray-400 mb-4">Crea una "instantánea" de los cambios que preparaste con `git add`, junto con un mensaje descriptivo.</p>
+                        <div class="code-block">
+                            <p>git commit -m "Tu mensaje descriptivo del commit"</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">7. Ver Historial (`git log`)</h3>
+                        <p class="text-gray-400 mb-4">Muestra el historial completo de commits en tu repositorio.</p>
+                        <div class="code-block">
+                            <p>git log</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">8. Crear y Cambiar Ramas (`git branch`, `git checkout`)</h3>
+                        <p class="text-gray-400 mb-4">Crea nuevas líneas de desarrollo y te permite moverte entre ellas.</p>
+                        <div class="code-block">
+                            <p>git branch &lt;nombre_rama&gt; <span class="text-gray-500"> # Crea una nueva rama</span></p>
+                            <p>git checkout &lt;nombre_rama&gt; <span class="text-gray-500"> # Cambia a una rama existente</span></p>
+                            <p>git checkout -b &lt;nueva_rama&gt; <span class="text-gray-500"> # Crea una nueva rama Y cambia a ella</span></p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">9. Fusionar Ramas (`git merge`)</h3>
+                        <p class="text-gray-400 mb-4">Combina los cambios de una rama a otra (por ejemplo, tus nuevas funciones a la rama principal).</p>
+                        <div class="code-block">
+                            <p>git merge &lt;rama_a_fusionar&gt;</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">10. Sincronizar con GitHub (`git pull`, `git push`)</h3>
+                        <p class="text-gray-400 mb-4">`pull` trae los últimos cambios de GitHub a tu copia local; `push` envía tus commits locales a GitHub.</p>
+                        <div class="code-block">
+                            <p>git pull <span class="text-gray-500"> # Descarga y fusiona cambios del remoto</span></p>
+                            <p>git push origin &lt;nombre_rama&gt; <span class="text-gray-500"> # Sube tus commits a GitHub</span></p>
+                        </div>
+                    </div>
+                     <div class="bg-gray-800 rounded-lg shadow-md p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">11. Añadir un Repositorio Remoto (`git remote add`)</h3>
+                        <p class="text-gray-400 mb-4">Conecta tu repositorio local con uno en GitHub por primera vez.</p>
+                        <div class="code-block">
+                            <p>git remote add origin &lt;URL_del_repositorio_remoto&gt;</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ejemplo-practico">
+                <h2 class="text-3xl font-bold text-center mb-8 text-white">Ejemplo Práctico: Tu Primer Flujo de Trabajo con Git y GitHub</h2>
+                <p class="text-center text-gray-400 mb-8 max-w-3xl mx-auto">Sigue estos pasos en tu terminal para crear un proyecto simple, hacer cambios, trabajar con ramas y sincronizar con GitHub.</p>
+
+                <div class="space-y-6">
+                    <div class="example-step">
+                        <h4>Paso 1: Crear un nuevo proyecto y inicializar Git</h4>
+                        <p class="text-gray-400 mb-4">Crea una carpeta para tu proyecto y conviértela en un repositorio Git.</p>
+                        <div class="code-block">
+                            <p>mkdir mi-primer-proyecto</p>
+                            <p>cd mi-primer-proyecto</p>
+                            <p>git init</p>
+                            <p><span class="text-gray-500"># Salida esperada: Inicializado repositorio Git vacío en .../.git/</span></p>
+                        </div>
+                    </div>
+
+                    <div class="example-step">
+                        <h4>Paso 2: Crear tu primer archivo y hacer tu primer Commit</h4>
+                        <p class="text-gray-400 mb-4">Crea un archivo, lo preparas y lo guardas en el historial de Git.</p>
+                        <div class="code-block">
+                            <p>echo "# Mi Primer Proyecto Git" > README.md</p>
+                            <p>git status</p>
+                            <p><span class="text-gray-500"># Salida esperada: Archivo no rastreado: README.md</span></p>
+                            <p>git add README.md</p>
+                            <p>git status</p>
+                            <p><span class="text-gray-500"># Salida esperada: Cambios a ser commiteados: README.md (en verde)</span></p>
+                            <p>git commit -m "Commit inicial: Agregado README.md"</p>
+                            <p><span class="text-gray-500"># Salida esperada: [main (root-commit) ...] Commit inicial: Agregado README.md</span></p>
+                        </div>
+                    </div>
+
+                    <div class="example-step">
+                        <h4>Paso 3: Crear una rama para una nueva función</h4>
+                        <p class="text-gray-400 mb-4">Vamos a añadir una función de "login" en una rama separada para no afectar la rama principal (main).</p>
+                        <div class="code-block">
+                            <p>git branch feature/login</p>
+                            <p>git checkout feature/login</p>
+                            <p><span class="text-gray-500"># Salida esperada: Cambiado a la rama 'feature/login'</span></p>
+                            <p>echo "function login() { /* ... */ }" > login.js</p>
+                            <p>git add login.js</p>
+                            <p>git commit -m "Agregada lógica básica de login"</p>
+                        </div>
+                    </div>
+
+                    <div class="example-step">
+                        <h4>Paso 4: Volver a la rama principal y fusionar</h4>
+                        <p class="text-gray-400 mb-4">Una vez que la función está lista, vuelves a `main` y traes los cambios de `feature/login`.</p>
+                        <div class="code-block">
+                            <p>git checkout main</p>
+                            <p><span class="text-gray-500"># Salida esperada: Cambiado a la rama 'main'</span></p>
+                            <p>git merge feature/login</p>
+                            <p><span class="text-gray-500"># Salida esperada: Actualizando ... Fast-forward / Merged ...</span></p>
+                        </div>
+                    </div>
+
+                    <div class="example-step">
+                        <h4>Paso 5: Conectar con GitHub y subir tus cambios</h4>
+                        <p class="text-gray-400 mb-4">Crea un repositorio **vacío** en GitHub (no añadas README, licencia, etc.). Copia la URL HTTP (ej. `https://github.com/tu-usuario/mi-primer-proyecto.git`).</p>
+                        <div class="code-block">
+                            <p>git remote add origin &lt;URL_de_tu_repositorio_GitHub&gt;</p>
+                            <p>git branch -M main <span class="text-gray-500"> # Renombra la rama por defecto a 'main' si no lo está</span></p>
+                            <p>git push -u origin main</p>
+                            <p><span class="text-gray-500"># Salida esperada: Ramas subidas a GitHub. Puedes verlas en tu URL.</span></p>
+                        </div>
+                    </div>
+
+                    <div class="example-step">
+                        <h4>Paso 6: Traer cambios (colaboración)</h4>
+                        <p class="text-gray-400 mb-4">Si trabajas en equipo o haces cambios directamente en GitHub, usa `git pull` para actualizar tu copia local.</p>
+                        <div class="code-block">
+                            <p>git pull origin main</p>
+                            <p><span class="text-gray-500"># Salida esperada: Ya actualizado. O descarga y fusiona cambios.</span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="consejos">
+                <h2 class="text-3xl font-bold text-center mb-8 text-white">Consejos Rápidos para Principiantes</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="stat-card text-left p-6">
+                        <div class="text-3xl mb-3">🚀</div>
+                        <h4 class="font-bold text-lg text-white">¡Practica Constantemente!</h4>
+                        <p class="text-gray-400">La mejor forma de aprender es usando Git y GitHub en tus propios proyectos, por pequeños que sean.</p>
+                    </div>
+                    <div class="stat-card text-left p-6">
+                        <div class="text-3xl mb-3">📝</div>
+                        <h4 class="font-bold text-lg text-white">Commits Pequeños y Frecuentes</h4>
+                        <p class="text-gray-400">Guarda tus cambios a menudo con mensajes claros. Esto facilita volver atrás y entender el historial.</p>
+                    </div>
+                    <div class="stat-card text-left p-6">
+                        <div class="text-3xl mb-3">🗣️</div>
+                        <h4 class="font-bold text-lg text-white">Mensajes de Commit Descriptivos</h4>
+                        <p class="text-gray-400">Un buen mensaje explica *qué* se hizo y *por qué*. Es tu diario de desarrollo.</p>
+                    Z</div>
+                    <div class="stat-card text-left p-6">
+                        <div class="text-3xl mb-3">🌳</div>
+                        <h4 class="font-bold text-lg text-white">Usa Ramas para Nuevas Funciones</h4>
+                        <p class="text-gray-400">Crea una rama para cada característica o corrección de error. Mantiene tu código principal limpio.</p>
+                    </div>
+                    <div class="stat-card text-left p-6">
+                        <div class="text-3xl mb-3">❓</div>
+                        <h4 class="font-bold text-lg text-white">No Temas Preguntar</h4>
+                        <p class="text-gray-400">La comunidad de desarrollo es enorme. Si tienes dudas, busca tutoriales o pregunta en foros.</p>
+                    </div>
+                    <div class="stat-card text-left p-6">
+                        <div class="text-3xl mb-3">⭐</div>
+                        <h4 class="font-bold text-lg text-white">Explora GitHub</h4>
+                        <p class="text-gray-400">Descubre proyectos de código abierto, revisa el código de otros y aprende de ejemplos reales.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer class="text-center mt-16 py-8 border-t border-gray-700">
+            <p class="text-gray-500">Infografía diseñada para introducir a estudiantes a Git y GitHub.</p>
+            <p class="text-xs text-gray-600 mt-2">Confirmación: No se utilizó Mermaid JS ni gráficos SVG en la creación de este documento. Todas las visualizaciones se renderizan en Canvas.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const tooltipConfig = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            }
+                            return label;
+                        }
+                    }
+                }
+            }
+        };
+
+        const processLabels = (labels) => {
+            const MAX_LENGTH = 16;
+            return labels.map(label => {
+                if (label.length <= MAX_LENGTH) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + word).length > MAX_LENGTH) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                });
+                lines.push(currentLine.trim());
+                return lines;
+            });
+        };
+
+        const energeticPalette = ['#00F0B5', '#00E0F0', '#00A0F0', '#0060F0', '#0020F0'];
+        Chart.defaults.color = '#9CA3AF';
+        Chart.defaults.borderColor = '#374151';
+
+        // No charts needed for this version, but keeping the functions for consistency if they were to be added later.
+    </script>
+</body>
+</html>
